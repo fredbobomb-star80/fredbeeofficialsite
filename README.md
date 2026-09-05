@@ -1,16 +1,14 @@
-# FredBee Preview v0.2 — test geometria
+# FredBee preview v0.3 — test struttura
 
-Questa versione serve SOLO a verificare la gabbia del sito prima di generare altri asset.
+Questa versione serve SOLO a verificare la gabbia desktop.
 
-## Paletti geometrici
-- Riga 1: PICCOLO 40% / GRANDE 60%
-- Riga 2: GRANDE 60% / PICCOLO 40%
-- Riga 3: PICCOLO 40% / GRANDE 60%
-- Riga 4: GRANDE 60% / PICCOLO 40%
-- Altezza delle quattro righe identica.
-- Gap molto ridotti e costanti.
-- I PNG vengono contenuti senza deformazione.
+- Master usato come immagine naturale (non background stirato).
+- 4 righe reali, ognuna con la propria griglia.
+- R1 40/60
+- R2 60/40
+- R3 40/60
+- R4 60/40
+- Nessun posizionamento assoluto dei singoli blocchi.
+- I quattro blocchi mancanti sono duplicati temporanei a piena opacità per vedere tutta la struttura.
 
-Questo è intenzionale: se un PNG non riempie bene la propria cella, il problema è nel rapporto d'aspetto del PNG e non viene mascherato dal CSS.
-
-I blocchi mancanti sono placeholder attenuati e riutilizzano gli asset esistenti.
+Non è ancora la versione finale mobile né la versione con link definitivi.

@@ -1,157 +1,84 @@
 :root {
-  --page-width: 1024px;
-  /* DIMA BLOCCATA DAL REFERENCE:
-     piccolo ≈ 40%, grande ≈ 60%, quattro righe di pari altezza. */
+  --poster-width: 1024px;
   --small: 40fr;
   --large: 60fr;
-  --gap-x: 0.9%;
-  --gap-y: 0.8%;
+  --gap-x: 0.65%;
+  --gap-y: 0.65%;
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
-body {
-  background: #17100c;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
+body { background: #16100c; }
 .site { width: 100%; }
+
+/* Il MASTER decide da solo altezza e proporzioni della pagina. */
 .poster {
   position: relative;
-  width: min(100%, var(--page-width));
-  aspect-ratio: 2 / 3;
+  width: min(100%, var(--poster-width));
   margin: 0 auto;
-  background: url("assets/master.png") center top / 100% 100% no-repeat;
-  overflow: hidden;
+}
+.master {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-/*
-  Questa è la gabbia definitiva di prova.
-  Non prende più altezza/proporzioni dai PNG.
-  La griglia è un rettangolo unico e compatto come nel reference.
-*/
-.grid {
+/* Un'unica area centrale. Niente position:absolute sui singoli blocchi. */
+.content-grid {
   position: absolute;
-  width: 86%;
-  left: 7%;
-  top: 25.1%;
-  aspect-ratio: 1.02 / 1;
+  left: 5.5%;
+  right: 5.5%;
+  top: 25.7%;
+  height: 50.6%;
 
   display: grid;
-  grid-template-columns: var(--small) var(--large);
   grid-template-rows: repeat(4, minmax(0, 1fr));
-  column-gap: var(--gap-x);
   row-gap: var(--gap-y);
 }
 
+/* Ogni riga è una griglia autonoma: P/G oppure G/P. */
+.row {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  column-gap: var(--gap-x);
+  align-items: stretch;
+}
+.row-pg { grid-template-columns: var(--small) var(--large); }
+.row-gp { grid-template-columns: var(--large) var(--small); }
+
 .slot {
-  position: relative;
   min-width: 0;
   min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
 }
 
-/*
-  IMPORTANTISSIMO: il PNG non decide più la cella.
-  Rimane integro dentro la cella matematica, senza deformazione.
-  Se un asset lascia troppo spazio, significa che QUELL'ASSET non ha
-  il rapporto corretto per la dima e andrà rigenerato, non corretto a occhio nel layout.
-*/
+/* La CELLA governa. Il PNG non può spostare né allargare la griglia. */
 .slot img {
   display: block;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 3px 4px rgba(24, 12, 5, .15));
+  object-position: center;
+  filter: drop-shadow(0 2px 3px rgba(25, 12, 5, .14));
 }
 
-/* P/G → G/P → P/G → G/P */
-.music   { grid-column: 1; grid-row: 1; }
-.about   { grid-column: 2; grid-row: 1; }
-.oracle  { grid-column: 1 / 2; grid-row: 2; }
-.video   { grid-column: 2; grid-row: 2; }
-.poker   { grid-column: 1; grid-row: 3; }
-.patent  { grid-column: 2; grid-row: 3; }
-.writing { grid-column: 1; grid-row: 4; }
-.ideas   { grid-column: 2; grid-row: 4; }
-
-/* Riga 2 e 4 devono invertire le larghezze. Con una griglia a due colonne
-   fisse non basta spostare gli elementi: usiamo sub-grid logiche per riga. */
-.oracle, .writing { grid-column: 1 / span 1; }
-.video, .ideas    { grid-column: 2 / span 1; }
-
-/* Correzione matematica dell'alternanza: ogni riga è una mini-griglia propria. */
-.grid {
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-}
-.grid::before { content: none; }
-
-/* Ogni coppia viene posizionata con percentuali esplicite dentro la riga. */
-.slot { position: absolute; height: calc((100% - 3 * var(--gap-y)) / 4); }
-.music, .about { top: 0; }
-.oracle, .video { top: calc(25% + var(--gap-y) / 2); }
-.poker, .patent { top: calc(50% + var(--gap-y)); }
-.writing, .ideas { top: calc(75% + 1.5 * var(--gap-y)); }
-
-.music, .poker { left: 0; width: 39.6%; }
-.about, .patent { right: 0; width: 59.5%; }
-.oracle, .writing { left: 0; width: 59.5%; }
-.video, .ideas { right: 0; width: 39.6%; }
-
-.placeholder img {
-  opacity: .20;
-  filter: grayscale(.6) drop-shadow(0 3px 4px rgba(24, 12, 5, .08));
-}
-
-.full-link { position: absolute; inset: 0; }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+/* Nella prova i duplicati restano visibili al 100%: servono a vedere tutta la struttura. */
+.placeholder { opacity: 1; }
 
 @media (max-width: 700px) {
-  body { background: #23150f; }
-  .poster {
-    aspect-ratio: auto;
-    min-height: 100vh;
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    overflow: visible;
-    padding-top: 54vw;
-    padding-bottom: 18vw;
+  body { background: #21150f; }
+  .poster { width: 100%; }
+
+  /* Su mobile usiamo una pagina lunga: il master resta in alto come atmosfera,
+     poi gli 8 elementi si impilano senza deformarsi. */
+  .content-grid {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 25.7%;
+    height: 50.6%;
   }
-  .grid {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 92%;
-    aspect-ratio: auto;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vw;
-  }
-  .slot,
-  .music, .about, .oracle, .video,
-  .poker, .patent, .writing, .ideas {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: auto;
-  }
-  .slot img { width: 100%; height: auto; max-width: none; max-height: none; }
 }
