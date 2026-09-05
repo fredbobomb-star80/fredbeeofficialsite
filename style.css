@@ -1,5 +1,11 @@
 :root {
   --page-width: 1024px;
+  /* DIMA BLOCCATA DAL REFERENCE:
+     piccolo ≈ 40%, grande ≈ 60%, quattro righe di pari altezza. */
+  --small: 40fr;
+  --large: 60fr;
+  --gap-x: 0.9%;
+  --gap-y: 0.8%;
 }
 
 * { box-sizing: border-box; }
@@ -19,18 +25,23 @@ body {
   overflow: hidden;
 }
 
+/*
+  Questa è la gabbia definitiva di prova.
+  Non prende più altezza/proporzioni dai PNG.
+  La griglia è un rettangolo unico e compatto come nel reference.
+*/
 .grid {
   position: absolute;
-  left: 4.2%;
-  right: 4.2%;
-  top: 25.2%;
-  height: 52.5%;
+  width: 86%;
+  left: 7%;
+  top: 25.1%;
+  aspect-ratio: 1.02 / 1;
+
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-columns: var(--small) var(--large);
   grid-template-rows: repeat(4, minmax(0, 1fr));
-  column-gap: 1.2%;
-  row-gap: 1.7%;
-  align-items: stretch;
+  column-gap: var(--gap-x);
+  row-gap: var(--gap-y);
 }
 
 .slot {
@@ -40,46 +51,65 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
-.slot.small { grid-column: span 5; }
-.slot.large { grid-column: span 7; }
+
+/*
+  IMPORTANTISSIMO: il PNG non decide più la cella.
+  Rimane integro dentro la cella matematica, senza deformazione.
+  Se un asset lascia troppo spazio, significa che QUELL'ASSET non ha
+  il rapporto corretto per la dima e andrà rigenerato, non corretto a occhio nel layout.
+*/
 .slot img {
   display: block;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  object-position: center;
-  filter: drop-shadow(0 4px 5px rgba(24, 12, 5, .18));
+  filter: drop-shadow(0 3px 4px rgba(24, 12, 5, .15));
 }
 
-/* Riga 1 */
-.music { grid-column: 1 / span 5; grid-row: 1; }
-.about { grid-column: 6 / span 7; grid-row: 1; }
-/* Riga 2 */
-.oracle { grid-column: 1 / span 7; grid-row: 2; }
-.video { grid-column: 8 / span 5; grid-row: 2; }
-/* Riga 3 */
-.poker { grid-column: 1 / span 5; grid-row: 3; }
-.patent { grid-column: 6 / span 7; grid-row: 3; }
-/* Riga 4 */
-.writing { grid-column: 1 / span 7; grid-row: 4; }
-.ideas { grid-column: 8 / span 5; grid-row: 4; }
+/* P/G → G/P → P/G → G/P */
+.music   { grid-column: 1; grid-row: 1; }
+.about   { grid-column: 2; grid-row: 1; }
+.oracle  { grid-column: 1 / 2; grid-row: 2; }
+.video   { grid-column: 2; grid-row: 2; }
+.poker   { grid-column: 1; grid-row: 3; }
+.patent  { grid-column: 2; grid-row: 3; }
+.writing { grid-column: 1; grid-row: 4; }
+.ideas   { grid-column: 2; grid-row: 4; }
 
-/* I placeholder sono volutamente attenuati: servono solo a testare la griglia. */
-.placeholder img { opacity: .28; filter: grayscale(.45) drop-shadow(0 4px 5px rgba(24, 12, 5, .12)); }
+/* Riga 2 e 4 devono invertire le larghezze. Con una griglia a due colonne
+   fisse non basta spostare gli elementi: usiamo sub-grid logiche per riga. */
+.oracle, .writing { grid-column: 1 / span 1; }
+.video, .ideas    { grid-column: 2 / span 1; }
 
-/* Link reali ma discreti durante il test: li posizioneremo precisamente dopo il collaudo visivo. */
-.social-links, .oracle-links, .video-links {
-  position: absolute;
-  left: 50%;
-  bottom: 3%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: .35rem;
-  opacity: 0;
-  pointer-events: none;
+/* Correzione matematica dell'alternanza: ogni riga è una mini-griglia propria. */
+.grid {
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
 }
-.hit { position: absolute; inset: 0; }
+.grid::before { content: none; }
+
+/* Ogni coppia viene posizionata con percentuali esplicite dentro la riga. */
+.slot { position: absolute; height: calc((100% - 3 * var(--gap-y)) / 4); }
+.music, .about { top: 0; }
+.oracle, .video { top: calc(25% + var(--gap-y) / 2); }
+.poker, .patent { top: calc(50% + var(--gap-y)); }
+.writing, .ideas { top: calc(75% + 1.5 * var(--gap-y)); }
+
+.music, .poker { left: 0; width: 39.6%; }
+.about, .patent { right: 0; width: 59.5%; }
+.oracle, .writing { left: 0; width: 59.5%; }
+.video, .ideas { right: 0; width: 39.6%; }
+
+.placeholder img {
+  opacity: .20;
+  filter: grayscale(.6) drop-shadow(0 3px 4px rgba(24, 12, 5, .08));
+}
+
+.full-link { position: absolute; inset: 0; }
 
 .sr-only {
   position: absolute;
@@ -106,14 +136,22 @@ body {
   }
   .grid {
     position: relative;
-    inset: auto;
+    top: auto;
+    left: auto;
     width: 92%;
-    height: auto;
+    aspect-ratio: auto;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+    gap: 1.5vw;
   }
-  .slot { width: 100%; aspect-ratio: 1.72 / 1; }
-  .slot img { width: 100%; height: 100%; object-fit: contain; }
+  .slot,
+  .music, .about, .oracle, .video,
+  .poker, .patent, .writing, .ideas {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+  }
+  .slot img { width: 100%; height: auto; max-width: none; max-height: none; }
 }

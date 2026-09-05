@@ -1,15 +1,16 @@
-# FredBee — preview v0.1
+# FredBee Preview v0.2 — test geometria
 
-Preview tecnica per GitHub Pages.
+Questa versione serve SOLO a verificare la gabbia del sito prima di generare altri asset.
 
-## Cosa contiene
-- MASTER come sfondo della pagina.
-- I 4 blocchi grafici già pronti: Musica, Chi sono, Oracolo, Video.
-- I 4 blocchi mancanti simulati riutilizzando temporaneamente le grafiche esistenti.
-- Griglia desktop P/G → G/P → P/G → G/P.
-- Versione mobile impilata.
+## Paletti geometrici
+- Riga 1: PICCOLO 40% / GRANDE 60%
+- Riga 2: GRANDE 60% / PICCOLO 40%
+- Riga 3: PICCOLO 40% / GRANDE 60%
+- Riga 4: GRANDE 60% / PICCOLO 40%
+- Altezza delle quattro righe identica.
+- Gap molto ridotti e costanti.
+- I PNG vengono contenuti senza deformazione.
 
-## Come pubblicare su GitHub Pages
-Copia `index.html`, `style.css`, `README.md` e la cartella `assets/` nella root del repository e fai commit/push.
+Questo è intenzionale: se un PNG non riempie bene la propria cella, il problema è nel rapporto d'aspetto del PNG e non viene mascherato dal CSS.
 
-I placeholder sono volutamente attenuati e verranno sostituiti con Poker, Brevetto, Scrittura e Idee quando saranno pronti.
+I blocchi mancanti sono placeholder attenuati e riutilizzano gli asset esistenti.
