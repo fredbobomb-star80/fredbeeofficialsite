@@ -3,34 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Federico (FredBee) Della Corte — musica, scrittura, idee, video, poker e progetti.">
+  <meta name="description" content="Federico (FredBee) Della Corte — Bazar Immaginario.">
   <title>Federico (FredBee) Della Corte</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="site" aria-label="Sito personale di Federico Della Corte">
-    <div class="poster">
-      <img class="master" src="assets/master.png" alt="" aria-hidden="true">
+  <main class="site-stage" aria-label="Federico (FredBee) Della Corte">
+    <img class="master" src="assets/master.png" alt="Bazar Immaginario sul mare">
 
-      <div class="content-grid" aria-label="Contenuti">
-        <div class="row row-pg">
-          <section class="slot"><img src="assets/musica.png" alt="Musica"></section>
-          <section class="slot"><img src="assets/chi-sono.png" alt="Chi sono"></section>
-        </div>
-        <div class="row row-gp">
-          <section class="slot"><img src="assets/oracolo.png" alt="Chiedilo all'Oracolo del Rock"></section>
-          <section class="slot"><img src="assets/video.png" alt="Video"></section>
-        </div>
-        <div class="row row-pg">
-          <section class="slot placeholder"><img src="assets/musica.png" alt="Placeholder Poker"></section>
-          <section class="slot placeholder"><img src="assets/chi-sono.png" alt="Placeholder Brevetto"></section>
-        </div>
-        <div class="row row-gp">
-          <section class="slot placeholder"><img src="assets/oracolo.png" alt="Placeholder Scrittura"></section>
-          <section class="slot placeholder"><img src="assets/video.png" alt="Placeholder Idee"></section>
+    <section class="content-grid" aria-label="Contenuti">
+      <div class="row row-pg">
+        <a class="slot slot-small" href="https://open.spotify.com/artist/2cmrlFHGVlxnBY5yJMULeA" target="_blank" rel="noopener" aria-label="Musica su Spotify">
+          <img src="assets/musica.png" alt="Musica">
+        </a>
+        <div class="slot slot-large">
+          <img src="assets/chi-sono.png" alt="Chi sono">
         </div>
       </div>
-    </div>
+
+      <div class="row row-gp">
+        <a class="slot slot-large" href="https://www.chiediloalloracolodelrock.com/" target="_blank" rel="noopener" aria-label="Chiedilo all'Oracolo del Rock">
+          <img src="assets/oracolo.png" alt="Chiedilo all'Oracolo del Rock">
+        </a>
+        <div class="slot slot-small">
+          <img src="assets/video.png" alt="Video">
+        </div>
+      </div>
+
+      <div class="row row-pg demo-row" aria-label="Segnaposto temporanei riga 3">
+        <div class="slot slot-small"><img src="assets/musica.png" alt="Segnaposto Poker"></div>
+        <div class="slot slot-large"><img src="assets/chi-sono.png" alt="Segnaposto Brevetto"></div>
+      </div>
+
+      <div class="row row-gp demo-row" aria-label="Segnaposto temporanei riga 4">
+        <div class="slot slot-large"><img src="assets/oracolo.png" alt="Segnaposto Scrittura"></div>
+        <div class="slot slot-small"><img src="assets/video.png" alt="Segnaposto Idee"></div>
+      </div>
+    </section>
   </main>
 </body>
 </html>

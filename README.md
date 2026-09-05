@@ -1,14 +1,12 @@
-# FredBee preview v0.3 — test struttura
+# FredBee preview v0.4 — GABBIA GEOMETRICA
 
-Questa versione serve SOLO a verificare la gabbia desktop.
+Questa versione serve a verificare SOLO la struttura definitiva della griglia sul master.
 
-- Master usato come immagine naturale (non background stirato).
-- 4 righe reali, ognuna con la propria griglia.
-- R1 40/60
-- R2 60/40
-- R3 40/60
-- R4 60/40
-- Nessun posizionamento assoluto dei singoli blocchi.
-- I quattro blocchi mancanti sono duplicati temporanei a piena opacità per vedere tutta la struttura.
+Desktop:
+- area griglia fissata sul tavolato centrale del master
+- 4 righe di identica altezza
+- alternanza 40/60, 60/40, 40/60, 60/40
+- gap orizzontali e verticali minimi e costanti
+- i PNG vengono forzati a riempire la cella: questa scelta è intenzionale per dimostrare la geometria; eventuale deformazione indica che l'asset va rigenerato nel rapporto esatto della cella.
 
-Non è ancora la versione finale mobile né la versione con link definitivi.
+Le righe 3 e 4 sono placeholder e riusano i primi quattro asset.
