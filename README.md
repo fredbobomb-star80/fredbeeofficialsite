@@ -1,12 +1,16 @@
-# FredBee preview v0.4 — GABBIA GEOMETRICA
+# FredBee personal site — working build
 
-Questa versione serve a verificare SOLO la struttura definitiva della griglia sul master.
+Static site ready for GitHub Pages.
 
-Desktop:
-- area griglia fissata sul tavolato centrale del master
-- 4 righe di identica altezza
-- alternanza 40/60, 60/40, 40/60, 60/40
-- gap orizzontali e verticali minimi e costanti
-- i PNG vengono forzati a riempire la cella: questa scelta è intenzionale per dimostrare la geometria; eventuale deformazione indica che l'asset va rigenerato nel rapporto esatto della cella.
+Files:
+- `index.html` — visual Bazar homepage
+- `info.html` — text-only semantic INFO page
+- `style.css`, `info.css`
+- `assets/master.png`
+- `assets/blocks/*.png` — 8 graphical blocks
+- `assets/docs/brevetto-originale.pdf`
 
-Le righe 3 e 4 sono placeholder e riusano i primi quattro asset.
+Before final publish:
+1. Replace the temporary Contacts paragraph with Federico's public email / mailto link.
+2. Confirm exact third YouTube channel URL/name and add it if desired.
+3. Final visual QA on desktop/mobile, especially alpha/transparency edges.
