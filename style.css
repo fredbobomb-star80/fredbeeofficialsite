@@ -1,2 +1,33 @@
-*{box-sizing:border-box}html,body{margin:0;background:#2c160d;color:#24160f;font-family:Georgia,"Times New Roman",serif}body{min-width:320px}.bazar{position:relative;width:min(100%,1024px);margin:0 auto;aspect-ratio:2/3;overflow:hidden;background:#b87435}.master{position:absolute;inset:0;width:100%;height:100%;display:block}.micro-nav{position:absolute;z-index:5;top:1.2%;right:2%;display:flex;gap:.45rem}.micro-btn{font:700 clamp(9px,1.25vw,13px)/1 system-ui,sans-serif;letter-spacing:.06em;text-decoration:none;color:#25150d;background:rgba(244,218,166,.88);border:1px solid rgba(62,35,20,.5);padding:.48em .7em;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18);backdrop-filter:blur(2px)}.blocks{position:absolute;z-index:3;left:13.67%;top:26.55%;width:72.75%;display:grid;grid-template-columns:2fr 3fr;column-gap:1.34%;row-gap:8px}.block{position:relative;min-width:0}.block.small{aspect-ratio:3/2}.block.large{aspect-ratio:9/4}.block img{width:100%;height:100%;display:block;object-fit:contain}.block:nth-child(1){grid-column:1}.block:nth-child(2){grid-column:2}.block:nth-child(3){grid-column:1}.block:nth-child(4){grid-column:2}.block:nth-child(5){grid-column:1}.block:nth-child(6){grid-column:2}.block:nth-child(7){grid-column:1}.block:nth-child(8){grid-column:2}.hit{position:absolute;z-index:4;display:block;bottom:5%;height:20%;border-radius:10px}.hit:focus-visible{outline:3px solid #ffd15b;outline-offset:2px;background:rgba(255,209,91,.18)}.hit-main{left:7%;right:7%}.hit-left{left:5%;width:42%}.hit-right{right:5%;width:42%}
-@media(max-width:700px){body{background:#b87435}.bazar{width:100%;aspect-ratio:auto;min-height:100vh;overflow:visible;background:#b87435}.master{position:relative;width:100%;height:auto}.blocks{position:relative;left:auto;top:auto;width:94%;margin:-1.5rem auto 2rem;display:flex;flex-direction:column;gap:.4rem}.block.small,.block.large{aspect-ratio:auto}.block img{height:auto}.micro-nav{position:fixed;top:.55rem;right:.55rem}.micro-btn{font-size:10px;background:rgba(244,218,166,.95)}}
+*{box-sizing:border-box}
+html,body{margin:0;background:#2c160d;color:#24160f;font-family:Georgia,"Times New Roman",serif}
+body{min-width:320px}
+.bazar{position:relative;width:min(100%,1024px);margin:0 auto;aspect-ratio:2/3;overflow:hidden;background:#b87435}
+.master{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.micro-nav{position:absolute;z-index:5;top:1.2%;left:50%;transform:translateX(-50%);display:flex;gap:.45rem;white-space:nowrap}
+.micro-btn{font:700 clamp(9px,1.25vw,13px)/1 system-ui,sans-serif;letter-spacing:.06em;text-decoration:none;color:#25150d;background:rgba(244,218,166,.88);border:1px solid rgba(62,35,20,.5);padding:.48em .7em;border-radius:999px;box-shadow:0 2px 8px rgba(0,0,0,.18);backdrop-filter:blur(2px)}
+
+/* Desktop master geometry: 745 px wide at the 1024 px reference canvas. */
+.blocks{position:absolute;z-index:3;left:13.67%;top:26.56%;width:72.75%;display:flex;flex-direction:column;gap:8px}
+.block-row{display:grid;width:100%;column-gap:10px;align-items:center}
+.block-row.row-pg{grid-template-columns:minmax(0,2fr) minmax(0,3fr)}
+.block-row.row-gp{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}
+.block{position:relative;min-width:0;height:auto}
+.block img{width:100%;height:auto;display:block;object-fit:contain}
+
+.hit{position:absolute;z-index:4;display:block;bottom:5%;height:20%;border-radius:10px}
+.hit:focus-visible{outline:3px solid #ffd15b;outline-offset:2px;background:rgba(255,209,91,.18)}
+.hit-main{left:7%;right:7%}
+.hit-left{left:5%;width:42%}
+.hit-right{right:5%;width:42%}
+
+@media(max-width:700px){
+  body{background:#b87435}
+  .bazar{width:100%;aspect-ratio:auto;min-height:100vh;overflow:visible;background:#b87435}
+  .master{position:relative;width:100%;height:auto}
+  .blocks{position:relative;left:auto;top:auto;width:94%;margin:-1.5rem auto 2rem;display:flex;flex-direction:column;gap:.45rem}
+  .block-row,.block-row.row-pg,.block-row.row-gp{display:flex;flex-direction:column;gap:.45rem}
+  .block img{height:auto}
+  .micro-nav{position:fixed;top:.55rem;left:50%;transform:translateX(-50%)}
+  .micro-btn{font-size:10px;background:rgba(244,218,166,.95)}
+}
