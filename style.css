@@ -129,3 +129,46 @@ body{min-width:320px}
 .hit-third-left { left: 0; top: 0; width: 33.333%; height: 100%; }
 .hit-third-center { left: 33.333%; top: 0; width: 33.334%; height: 100%; }
 .hit-third-right { left: 66.667%; top: 0; width: 33.333%; height: 100%; }
+
+/* Visible CTA links — added without changing the approved block/grid geometry. */
+.cta-bar{
+  position:absolute;
+  z-index:6;
+  left:6%;
+  right:6%;
+  bottom:3.5%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:.32rem;
+  pointer-events:none;
+}
+.cta{
+  pointer-events:auto;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:22px;
+  padding:.42em .72em;
+  border:1px solid rgba(54,31,17,.62);
+  border-radius:999px;
+  background:rgba(246,220,164,.94);
+  box-shadow:0 2px 7px rgba(0,0,0,.20);
+  color:#24150d;
+  font:800 clamp(7px,.88vw,10px)/1.05 system-ui,sans-serif;
+  letter-spacing:.035em;
+  text-align:center;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.cta:hover{transform:translateY(-1px);background:rgba(255,231,178,.98)}
+.cta:focus-visible{outline:3px solid #ffd15b;outline-offset:2px}
+.cta-three{left:2.5%;right:2.5%;gap:.18rem}
+.cta-three .cta{padding:.38em .48em}
+
+@media(max-width:700px){
+  .cta-bar{left:5%;right:5%;bottom:3%;gap:.4rem}
+  .cta{min-height:30px;padding:.52em .8em;font-size:clamp(8px,2.35vw,11px)}
+  .cta-three{left:3%;right:3%;gap:.25rem}
+  .cta-three .cta{padding:.48em .62em}
+}
