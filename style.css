@@ -31,3 +31,96 @@ body{min-width:320px}
   .micro-nav{position:fixed;top:.55rem;left:50%;transform:translateX(-50%)}
   .micro-btn{font-size:10px;background:rgba(244,218,166,.95)}
 }
+
+/* MOBILE FIX v1 — desktop above 700px remains untouched. */
+@media(max-width:700px){
+  body{background:#2c160d}
+
+  .bazar{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    max-width:700px;
+    min-height:100vh;
+    margin:0 auto;
+    overflow:visible;
+    background:#7b3d1d;
+  }
+
+  /* On mobile the tall master is not shown in full: it is split into
+     a compact hero crop and a compact closing crop. */
+  .master{display:none}
+
+  .bazar::before{
+    content:"";
+    display:block;
+    width:100%;
+    aspect-ratio:1024/390;
+    flex:0 0 auto;
+    background-image:url("assets/master.png");
+    background-repeat:no-repeat;
+    background-size:100% auto;
+    background-position:center top;
+  }
+
+  .bazar::after{
+    content:"";
+    display:block;
+    width:100%;
+    aspect-ratio:1024/320;
+    flex:0 0 auto;
+    background-image:url("assets/master.png");
+    background-repeat:no-repeat;
+    background-size:100% auto;
+    background-position:center bottom;
+  }
+
+  .micro-nav{
+    position:absolute;
+    z-index:10;
+    top:.55rem;
+    left:50%;
+    transform:translateX(-50%);
+    gap:.35rem;
+  }
+
+  .micro-btn{
+    font-size:10px;
+    padding:.48em .68em;
+    background:rgba(244,218,166,.95);
+  }
+
+  .blocks{
+    position:relative;
+    z-index:3;
+    left:auto;
+    top:auto;
+    width:96%;
+    margin:.35rem auto .45rem;
+    display:flex;
+    flex-direction:column;
+    gap:.38rem;
+  }
+
+  .block-row,
+  .block-row.row-pg,
+  .block-row.row-gp{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    gap:.38rem;
+  }
+
+  .block{
+    width:100%;
+    min-width:0;
+  }
+
+  .block img{
+    display:block;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+  }
+}
