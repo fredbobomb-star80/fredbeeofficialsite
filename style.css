@@ -124,3 +124,8 @@ body{min-width:320px}
     object-fit:contain;
   }
 }
+
+/* VIDEO: three equal clickable areas for the three YouTube channels. */
+.hit-third-left { left: 0; top: 0; width: 33.333%; height: 100%; }
+.hit-third-center { left: 33.333%; top: 0; width: 33.334%; height: 100%; }
+.hit-third-right { left: 66.667%; top: 0; width: 33.333%; height: 100%; }
