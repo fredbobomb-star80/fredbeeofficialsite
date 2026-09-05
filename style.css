@@ -172,3 +172,27 @@ body{min-width:320px}
   .cta-three{left:3%;right:3%;gap:.25rem}
   .cta-three .cta{padding:.48em .62em}
 }
+
+
+/* MOBILE CTA visibility hardening + cache-safe build. */
+@media(max-width:700px){
+  .block{position:relative;}
+  .cta-bar{
+    display:flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    z-index:20 !important;
+    pointer-events:none;
+  }
+  .cta{
+    display:inline-flex !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    position:relative;
+    z-index:21;
+    pointer-events:auto;
+    background:#f6dca4;
+    color:#24150d;
+    border:1px solid rgba(54,31,17,.72);
+  }
+}
