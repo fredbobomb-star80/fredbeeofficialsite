@@ -45,7 +45,7 @@ body{min-width:320px}
     min-height:100vh;
     margin:0 auto;
     overflow:visible;
-    background:#7b3d1d;
+    background:#7b3d1d url("assets/legno-mobile.jpg") center top / cover repeat-y;
   }
 
   /* On mobile the tall master is not shown in full: it is split into
